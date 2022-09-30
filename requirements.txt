@@ -3,4 +3,7 @@ pylint
 click
 ipython
 fastapi
+typer
+numpy 
+pandas
 uvicorn[standard]

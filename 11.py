@@ -1,15 +1,10 @@
 from unicodedata import category
+from enum import Enum
 import numpy as np
 import pandas as pd
 import typer
-from enum import Enum
-import os
-
-os.chdir("F:/Duke MIDS/706_Data Engineering Systems/Project2")
-
 
 main = typer.Typer()
-
 
 @main.command()
 def hello(name: str):
@@ -18,7 +13,7 @@ def hello(name: str):
 
 
 @main.command()
-def load_data(num: int = 5):
+def LoadData(num: int = 5):
     """Load dataset"""
     """Type the number of rows you want to preview"""
     df = pd.read_csv("data.csv")
@@ -27,7 +22,7 @@ def load_data(num: int = 5):
     typer.echo(df_head)
 
 
-class feature_type(str, Enum):
+class FeatureType(str, Enum):
     """feature type options"""
 
     categorical = "categorical"
@@ -35,7 +30,7 @@ class feature_type(str, Enum):
 
 
 @main.command()
-def show_features(type: feature_type):
+def ShowFeatures(type: FeatureType):
     """Show features"""
     df = pd.read_csv("data.csv")
     categorical_features = df.select_dtypes(include=["object"]).columns
@@ -49,7 +44,7 @@ def show_features(type: feature_type):
 
 
 @main.command()
-def show_label():
+def ShowLabel():
     """Show label"""
     df = pd.read_csv("data.csv")
     label = df["Survived"]
@@ -58,7 +53,7 @@ def show_label():
 
 
 @main.command()
-def show_missing():
+def ShowMissing():
     """Show missing values"""
     df = pd.read_csv("data.csv")
     typer.echo("Missing values shown")
